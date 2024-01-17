@@ -1,0 +1,135 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.itinerary-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    background-color: #f06d47;
+    padding: 20px;
+    width: 250px;
+}
+
+.add-button {
+    background-color: #f06d47;
+    border: 2px solid white;
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    display: block;
+    text-align: center;
+}
+
+.itinerary-list .itinerary-item {
+    background-color: white;
+    padding: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.flights-container {
+    background-color: #8dc3d6;
+    flex-grow: 1;
+    padding: 20px;
+    color: white;
+}
+
+.flights-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.flight {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 10px;
+    position: relative;
+    color: #333;
+}
+
+.day {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.route {
+    font-size: 1.5em;
+    color: #555;
+    margin: 5px 0;
+}
+
+.airline, .flight-number, .airplane {
+    font-size: 0.9em;
+    color: #777;
+    margin: 2px 0;
+}
+
+.flight::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.flight .airline-logo {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+/* Additional styles for airline logos */
+#flight1 .airline-logo {
+    background-image: url('/british-airways-logo-tail.png'); /* Replace with actual path */
+}
+
+#flight2 .airline-logo {
+    background-image: url('/air-france-logo-tail.png'); /* Replace with actual path */
+}
+
+#flight3
+.airline-logo {
+background-image: url('/united-airlines-logo-tail-1.png'); /* Replace with actual path */
+}
+
+/* Style adjustments for responsive design */
+@media (max-width: 768px) {
+.itinerary-container {
+flex-direction: column;
+}
+
+.sidebar {
+    width: 100%;
+    text-align: center;
+}
+
+.flights-container {
+    padding: 10px;
+}
+}
+
+/* Ensure that the flight details are centered within the pill-shaped divs */
+.flight {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+}
+
+/* Optional: Add hover effects for itinerary items */
+.itinerary-item:hover {
+background-color: #f0896d;
+color: white;
+}
