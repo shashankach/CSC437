@@ -1,0 +1,49 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.content-container {
+    display: flex;
+    height: 100vh; /* Ensure it takes the full viewport height */
+    width: 100%; /* Ensure it takes the full width */
+}
+
+.sidebar {
+    background-color: var(--sidebar-background-color, #f06d47);
+    padding: 20px;
+    width: 250px; /* Keep the sidebar width fixed */
+    box-sizing: border-box;
+    overflow-y: auto; /* Allow scrolling if needed */
+}
+
+.navbar {
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar-item {
+    background-color: var(--item-background-color, white);
+    color: var(--text-color);
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: left;
+    text-decoration: none;
+    display: block;
+}
+
+.main-content {
+    flex-grow: 1; /* Allows the main content to fill the remaining space */
+    padding: 20px;
+    overflow-y: auto; /* Scroll if content exceeds the viewport height */
+}
+
+h1, .itinerary, ol {
+    margin: 0;
+    padding-left: 0; /* Adjust if you want some spacing */
+}
+

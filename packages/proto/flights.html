@@ -1,52 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Flight Itinerary</title>
-<!-- <link rel="stylesheet" href="styles.css"> -->
+    <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="stylesheet" href="/styles/page.css">
+    <link rel="stylesheet" href="/styles/reset.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    
+    <title>Flight Itinerary </title>
 </head>
 <body>
-    <div>
-        <a href="index.html" class="button-link">Home</a>
-    </div>
-    <div class="itinerary-container">
+    <div class="main-container"> <!-- Wrapper for sidebar and flights-container -->
+        <!-- Sidebar -->
         <div class="sidebar">
-            <button class="add-button">+</button>
-            <div class="itinerary-list">
-                <div class="itinerary-item">Itinerary 1</div>
-                <div class="itinerary-item">Itinerary 2</div>
-                <div class="itinerary-item">Itinerary 3</div>
-                <div class="itinerary-item">Itinerary 4</div>
+            <div class="navbar">
+                <a href="index.html" class="navbar-item">Home</a>
+                <a href="flights.html" class="navbar-item">Flights</a>
+                <a href="itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="things.html" class="navbar-item">Things to Do</a>
             </div>
         </div>
+
+        <!-- Flights Container -->
         <div class="flights-container">
-            <h1>Flights</h1>
+            <h1>Flights </h1>
             <div class="flight" id="flight1">
                 <div class="day">Day 1</div>
                 <div class="route">SFO - LHR</div>
-                <div class="airline">British Airways</div>
+                <div class="airline">British Airways <svg class="icon">
+                    <use xlink:href="/icons/transportation.svg#icon-train"></use>
+                  </svg></div>
                 <div class="flight-number">BA 284</div>
                 <div class="airplane">Airbus A380-800</div>
-                <div class="airline-logo"></div>
             </div>
             <div class="flight" id="flight2">
                 <div class="day">Day 3</div>
                 <div class="route">LHR - CDG</div>
-                <div class="airline">Air France</div>
+                <div class="airline">Air France <svg class="icon">
+                    <use xlink:href="/icons/transportation.svg#icon-train"></use>
+                  </svg></div>
                 <div class="flight-number">AF 1381</div>
                 <div class="airplane">Airbus A320-200</div>
-                <div class="airline-logo"></div>
             </div>
             <div class="flight" id="flight3">
                 <div class="day">Day 5</div>
                 <div class="route">CDG - SFO</div>
-                <div class="airline">United Airlines</div>
+                <div class="airline">United Airlines <svg class="icon">
+                    <use xlink:href="/icons/transportation.svg#icon-train"></use>
+                  </svg></div>
                 <div class="flight-number">UA 984</div>
                 <div class="airplane">Boeing 777-200ER</div>
-                <div class="airline-logo"></div>
             </div>
         </div>
     </div>
 </body>
 </html>
+

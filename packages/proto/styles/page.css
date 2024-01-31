@@ -1,0 +1,51 @@
+/* page.css */
+
+/* Basic color scheme setup */
+:root {
+    --page-background-color: #8dc3d6; /* Light grey for the page background */
+    --header-background-color: #f06d47; /* Bright orange for the header background */
+    --text-color: #333333; /* Dark grey for default text */
+    --header-text-color: #333333; /* Dark grey for text in the header, adjusted for contrast */
+    --accent-color: #8dc3d6; /* Sky blue as an accent color */
+}
+
+/* Apply the background color to the body */
+body {
+    background-color: var(--page-background-color);
+    color: var(--text-color);
+    font-family: 'Roboto Condensed', sans-serif; /* Use Roboto Condensed for body */
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styling */
+header {
+    background-color: var(--header-background-color);
+    color: var(--header-text-color);
+    padding: 20px;
+    text-align: center;
+}
+
+/* Accent color for links and headings, Roboto for headers */
+a, h1, h2, h3, h4, h5, h6 {
+    color: var(--text-color);
+    font-family: 'Roboto', sans-serif; /* Use Roboto for headers */
+}
+
+/* Ensure links do not have text decorations by default */
+a {
+    text-decoration: none;
+}
+
+/* Add a hover effect for links to improve interactivity */
+a:hover {
+    text-decoration: underline;
+}
+
+svg.icon {
+    display: inline;
+    height: 1em;
+    width: 2em;
+    vertical-align: top;
+    fill: currentColor;
+  }
