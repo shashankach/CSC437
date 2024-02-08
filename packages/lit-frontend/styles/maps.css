@@ -1,0 +1,76 @@
+/* Main body styles */
+body {
+    background-color: var(--page-background-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row; /* Align sidebar and map in a row */
+    align-items: flex-start; /* Align items to the start of the cross axis */
+    min-height: 100vh;
+    text-align: left; /* Default text alignment */
+}
+
+/* Sidebar styles */
+.sidebar {
+    background-color: var(--sidebar-background-color, #f06d47);
+    padding: 20px;
+    width: 250px; /* Fixed width for the sidebar */
+    height: 100vh; /* Full height */
+    box-sizing: border-box; /* Include padding in width calculation */
+    overflow-y: auto; /* Enable scroll on small screens/high number of itineraries */
+}
+
+/* Navbar and navbar items */
+.navbar {
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar-item {
+    background-color: var(--item-background-color, white);
+    color: var(--text-color);
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 5px; /* Slightly rounded corners for a softer look */
+    text-align: center;
+    text-decoration: none; /* Remove underline from links */
+    display: block; /* Make the links fill the container */
+}
+
+/* Map container styles */
+.map-container {
+    flex-grow: 1;
+    width: 45vw; 
+    height: 45vw; 
+    margin: 20px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Iframe styles within the map container */
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+    }
+
+    .map-container {
+        width: 90vw; /* Adjust width for mobile */
+        height: 90vw; /* Adjust height to maintain square shape */
+    }
+}

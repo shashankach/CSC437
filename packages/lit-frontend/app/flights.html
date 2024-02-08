@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/styles/styles.css">
+    <link rel="stylesheet" href="/styles/page.css">
+    <link rel="stylesheet" href="/styles/reset.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="./list.ts"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    
+    <title>Flight Itinerary </title>
+</head>
+<body>
+    <div class="main-container"> <!-- Wrapper for sidebar and flights-container -->
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="navbar">
+                <a href="index.html" class="navbar-item">Home</a>
+                <a href="flights.html" class="navbar-item">Flights</a>
+                <a href="itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="things.html" class="navbar-item">Things to Do</a>
+            </div>
+        </div>
+
+        <list-f></list-f>
+
+        <!-- Flights Container -->
+       
+    <script>
+        const data = [
+            {
+                day: 'Day 1',
+                route: 'SFO - LHR',
+                airline: 'British Airways',
+                flightNumber: 'BA 284',
+                airplane: 'Airbus A380-800',
+                sortOrder: 0
+            },
+            {
+                day: 'Day 3',
+                route: 'LHR - CDG',
+                airline: 'Air France',
+                flightNumber: 'AF 1381',
+                airplane: 'Airbus A320-200',
+                sortOrder: 2
+            },
+            {
+                day: 'Day 2',
+                route: 'CDG - SFO',
+                airline: 'United Airlines',
+                flightNumber: 'UA 984',
+                airplane: 'Boeing 777-200ER',
+                sortOrder: 1
+            }];
+
+        document.querySelector('list-f').data = data;
+        
+        
+    </script>
+</body>
+</html>
+

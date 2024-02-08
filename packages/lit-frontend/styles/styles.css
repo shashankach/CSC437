@@ -1,0 +1,60 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.main-container {
+    display: flex; /* This makes the sidebar and flights-container display side by side */
+    width: 100%; /* Adjust as necessary */
+    max-width: 1200px; /* Optional: limits the maximum width of the content */
+}
+
+.sidebar {
+    background-color: #f06d47;
+    padding: 20px;
+    width: 250px;
+    height: 100vh;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.navbar-item {
+    background-color: white;
+    color: black;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+}
+
+.flights-container {
+    background-color: #8dc3d6;
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto; /* Allows scrolling if the content exceeds the viewport height */
+}
+
+.flight {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column; /* Stack the sidebar and flights-container on smaller screens */
+    }
+
+    .sidebar, .flights-container {
+        width: 100%; /* Full width for both on smaller screens */
+        height: auto; /* Adjust height automatically */
+    }
+}
