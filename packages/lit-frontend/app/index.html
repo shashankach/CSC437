@@ -13,12 +13,17 @@
     
 </head>
 <body>
-    <drop-down align="right">
-        <div> Dropdown </div>
-        <div slot="menu"> 
-            <a href="profile.html">Profile</a>
-            <a href="settings.html">Settings</a>
-            <a href="logout.html">Logout</a>
+    <drop-down align="left">
+        <div class="dropdown">
+            <div>Menu</div>
+            <div class="dropdown-content" slot="menu">
+                <script>
+                    // Simple dark mode toggle script
+                    document.getElementById('darkModeToggle').addEventListener('change', function() {
+                        document.body.classList.toggle('dark-mode');
+                    });
+                </script>
+            </div>
         </div>
           <!-- <user-panel
             slot="menu"
@@ -28,7 +33,7 @@
         -->
         </drop-down>
     <h1>Home</h1>
-    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    <!-- <button onclick="toggleDarkMode()">Toggle Dark Mode</button> -->
     <div>
         <a href="flights.html" class="button-link">Flights</a>
         <a href="things.html" class="button-link">Things to Do</a>

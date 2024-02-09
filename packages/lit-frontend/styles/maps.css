@@ -1,14 +1,8 @@
-/* Main body styles */
-body {
-    background-color: var(--page-background-color);
-    color: var(--text-color);
+body, html {
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: row; /* Align sidebar and map in a row */
-    align-items: flex-start; /* Align items to the start of the cross axis */
-    min-height: 100vh;
-    text-align: left; /* Default text alignment */
+    height: 100%;
+    width: 100%;
 }
 
 /* Sidebar styles */
@@ -18,13 +12,12 @@ body {
     width: 250px; /* Fixed width for the sidebar */
     height: 100vh; /* Full height */
     box-sizing: border-box; /* Include padding in width calculation */
-    overflow-y: auto; /* Enable scroll on small screens/high number of itineraries */
+    float: left; /* Float the sidebar to the left */
 }
 
 /* Navbar and navbar items */
 .navbar {
-    display: flex;
-    flex-direction: column;
+    display: block;
 }
 
 .navbar-item {
@@ -33,44 +26,45 @@ body {
     padding: 10px;
     margin-bottom: 10px;
     cursor: pointer;
-    border-radius: 5px; /* Slightly rounded corners for a softer look */
+    border-radius: 5px;
     text-align: center;
-    text-decoration: none; /* Remove underline from links */
-    display: block; /* Make the links fill the container */
+    text-decoration: none;
+    display: block; /* Block-level elements stack vertically */
 }
 
 /* Map container styles */
 .map-container {
-    flex-grow: 1;
-    width: 45vw; 
-    height: 45vw; 
-    margin: 20px;
-    border-radius: 10px;
+    margin-left: 270px; /* Add left margin equal to the sidebar width plus padding */
+    height: 100vh; /* Full viewport height */
     box-sizing: border-box;
     overflow: hidden;
 }
 
 /* Iframe styles within the map container */
 iframe {
-    width: 100%;
+    width: calc(100% - 270px); /* Subtract the sidebar width */
     height: 100%;
     border: none;
 }
 
+/* Clearfix for the floated sidebar */
+body::after {
+    content: "";
+    display: table;
+    clear: both;
+}
 
 /* Responsive design adjustments */
 @media (max-width: 768px) {
-    body {
-        flex-direction: column;
-    }
-
-    .sidebar {
-        width: 100%;
-        height: auto;
-    }
-
+    .sidebar, 
     .map-container {
-        width: 90vw; /* Adjust width for mobile */
-        height: 90vw; /* Adjust height to maintain square shape */
+        width: 100%; /* Full width for both on smaller screens */
+        height: auto; /* Adjust height automatically */
+        float: none; /* Disable float for mobile view */
+        margin-left: 0; /* Reset margins */
+    }
+
+    iframe {
+        width: 100%; /* Full width for iframe on smaller screens */
     }
 }

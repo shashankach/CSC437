@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/styles/page.css">
+<link rel="stylesheet" href="/styles/reset.css">
+<link rel="stylesheet" href="/styles/profile.css">
+<script type="module" src="./drop-down.ts"></script>
+<title>User Panel</title>
+
+</head>
+<body>
+    <drop-down align="left">
+        <div class="dropdown">
+            <div>Menu</div>
+            <div class="dropdown-content" slot="menu">
+                <script>
+                    // Simple dark mode toggle script
+                    document.getElementById('darkModeToggle').addEventListener('change', function() {
+                        document.body.classList.toggle('dark-mode');
+                    });
+                </script>
+            </div>
+        </div>
+        
+        </drop-down>
+
+<div class="sidebar">
+        <div class="navbar">
+            <a href="index.html" class="navbar-item">Home</a>
+            <a href="flights.html" class="navbar-item">Flights</a>
+            <a href="itinerary.html" class="navbar-item">Itinerary</a>
+            <a href="things.html" class="navbar-item">Things to Do</a>
+            <a href="maps.html" class="navbar-item">Map</a>
+        </div>
+    </div>
+
+<div class="user-panel">
+    <img src="./pfp.webp" alt="User Image">
+    <h2>Shashankach</h2>
+    <p>Member since Jan 2024</p>
+</div>
+
+</body>
+</html>

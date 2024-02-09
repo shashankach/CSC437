@@ -4,6 +4,8 @@
     <link rel="stylesheet" href="/styles/styles.css">
     <link rel="stylesheet" href="/styles/page.css">
     <link rel="stylesheet" href="/styles/reset.css">
+    <link rel="stylesheet" href="/styles/tokens.css">
+    <script type="module" src="./drop-down.ts"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="module" src="./list.ts"></script>
@@ -12,6 +14,21 @@
     <title>Flight Itinerary </title>
 </head>
 <body>
+    <drop-down align="left">
+        <div class="dropdown">
+            <div>Menu</div>
+            <div class="dropdown-content" slot="menu">
+                <script>
+                    // Simple dark mode toggle script
+                    document.getElementById('darkModeToggle').addEventListener('change', function() {
+                        document.body.classList.toggle('dark-mode');
+                    });
+                </script>
+            </div>
+        </div>
+        
+        </drop-down>
+    
     <div class="main-container"> <!-- Wrapper for sidebar and flights-container -->
         <!-- Sidebar -->
         <div class="sidebar">
@@ -20,13 +37,14 @@
                 <a href="flights.html" class="navbar-item">Flights</a>
                 <a href="itinerary.html" class="navbar-item">Itinerary</a>
                 <a href="things.html" class="navbar-item">Things to Do</a>
+                <a href="maps.html" class="navbar-item">Map</a>
             </div>
         </div>
 
         <list-f></list-f>
 
         <!-- Flights Container -->
-       
+        
     <script>
         const data = [
             {

@@ -7,10 +7,25 @@
     <link rel="stylesheet" href="/styles/page.css">
     <link rel="stylesheet" href="/styles/maps.css"> 
     <link rel="stylesheet" href="/styles/reset.css">   
+    <script type="module" src="./drop-down.ts"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
     
 </head>
 <body>
+    <drop-down align="left">
+        <div class="dropdown">
+            <div>Menu</div>
+            <div class="dropdown-content" slot="menu">
+                <script>
+                    // Simple dark mode toggle script
+                    document.getElementById('darkModeToggle').addEventListener('change', function() {
+                        document.body.classList.toggle('dark-mode');
+                    });
+                </script>
+            </div>
+        </div>
+        
+        </drop-down>
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="navbar">
@@ -18,6 +33,7 @@
             <a href="flights.html" class="navbar-item">Flights</a>
             <a href="itinerary.html" class="navbar-item">Itinerary</a>
             <a href="things.html" class="navbar-item">Things to Do</a>
+            <a href="maps.html" class="navbar-item">Map</a>
         </div>
     </div>
     
