@@ -2,9 +2,26 @@ import { css, html, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
 @customElement("list-f")
-export class listElement extends LitElement {
-    @property()
+export class ListElement extends LitElement {
+    @property({ type: Array })
     data = [];
+
+    @property({ type: Boolean })
+    sortAscending = true; // Property to track sort direction
+
+    // Method to toggle sort direction and sort data
+    toggleSort() {
+        this.sortAscending = !this.sortAscending;
+        this.sortData();
+    }
+
+    // Method to sort the flights data
+    sortData() {
+        this.data = [...this.data].sort((a, b) => {
+            return this.sortAscending ? a.sortOrder - b.sortOrder : b.sortOrder - a.sortOrder;
+        });
+        this.requestUpdate();
+    }
 
     renderFlightInfo(flight) {
         return html`
@@ -20,13 +37,17 @@ export class listElement extends LitElement {
     }
 
     render() {
-        const s = this.data.map(flight => this.renderFlightInfo(flight));
-        return html`<div class="main-container">${s}</div>`;
+        return html`
+            <button @click="${this.toggleSort}">Sort (Toggles Ascending & Descending)</button>
+            <div class="main-container">
+                ${this.data.map(flight => this.renderFlightInfo(flight))}
+            </div>
+        `;
     }
 
     static styles = css`
         :host {
-            display: block; /* Ensure the host element is block-level to take full width */
+            display: block;
             margin: 0;
             padding: 0;
         }
@@ -34,7 +55,7 @@ export class listElement extends LitElement {
         .main-container {
             display: flex;
             flex-direction: column;
-            width: 100%; /* Ensure it takes the full width */
+            width: 100%;
         }
 
         .flight {
@@ -42,12 +63,18 @@ export class listElement extends LitElement {
             border-radius: 20px;
             padding: 20px;
             margin-bottom: 10px;
-            width: 100%; /* Ensure flight elements take full width */
+            width: 100%;
         }
 
         .icon {
             width: 16px;
             height: 16px;
+        }
+
+        button {
+            margin: 10px;
+            padding: 5px 10px;
+            cursor: pointer;
         }
     `;
 }
