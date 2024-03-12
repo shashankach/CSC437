@@ -26,33 +26,34 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var mongoConnect_exports = {};
-__export(mongoConnect_exports, {
-  connect: () => connect
+var profiles_exports = {};
+__export(profiles_exports, {
+  default: () => profiles_default
 });
-module.exports = __toCommonJS(mongoConnect_exports);
-var import_mongoose = __toESM(require("mongoose"));
-var import_dotenv = __toESM(require("dotenv"));
-import_mongoose.default.set("debug", true);
-import_dotenv.default.config();
-function getMongoURI(dbname) {
-  let connection_string = `mongodb://localhost:27017/${dbname}`;
-  const { MONGO_USER, MONGO_PWD, MONGO_CLUSTER } = process.env;
-  if (MONGO_USER && MONGO_PWD && MONGO_CLUSTER) {
-    console.log(
-      "Connecting to MongoDB at",
-      `mongodb+srv://${MONGO_USER}:${MONGO_PWD}@${MONGO_CLUSTER}/${dbname}`
-    );
-    connection_string = `mongodb+srv://${MONGO_USER}:${MONGO_PWD}@${MONGO_CLUSTER}/?retryWrites=true&w=majority`;
-  } else {
-    console.log("Connecting to MongoDB at ", connection_string);
-  }
-  return connection_string;
+module.exports = __toCommonJS(profiles_exports);
+var import_profile = __toESM(require("./models/mongo/profile"));
+function index() {
+  return import_profile.default.find();
 }
-function connect(dbname) {
-  import_mongoose.default.connect(getMongoURI(dbname)).catch((error) => console.log(error));
+function get(userid) {
+  return import_profile.default.find({ userid }).then((list) => list[0]).catch((err) => {
+    throw `${userid} Not Found`;
+  });
 }
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
-  connect
-});
+function create(profile) {
+  const p = new import_profile.default(profile);
+  return p.save();
+}
+function update(userid, profile) {
+  return new Promise((resolve, reject) => {
+    import_profile.default.findOneAndUpdate({ userid }, profile, {
+      new: true
+    }).then((profile2) => {
+      if (profile2)
+        resolve(profile2);
+      else
+        reject("Failed to update profile");
+    });
+  });
+}
+var profiles_default = { index, get, create, update };

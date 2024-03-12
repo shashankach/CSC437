@@ -25,10 +25,9 @@ var import_mongoose = require("mongoose");
 const profileSchema = new import_mongoose.Schema(
   {
     userid: { type: String, required: true, trim: true },
-    route: { type: String, required: true, trim: true },
-    airline: { type: String, trim: true },
-    flight_number: { type: String, trim: true },
-    airplane: { type: String, required: true, trim: true }
+    name: { type: String, required: true, trim: true },
+    nickname: { type: String, trim: true },
+    city: { type: String, trim: true }
   },
   { collection: "user_profiles" }
 );

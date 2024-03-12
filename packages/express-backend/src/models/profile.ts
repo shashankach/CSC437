@@ -4,3 +4,4 @@ export interface Profile {
     nickname?: string;
     city?: string;
   }
+
