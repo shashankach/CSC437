@@ -1,110 +1,38 @@
 import { css, html, LitElement } from "lit";
-import { customElement, property, state } from "lit/decorators.js";
-import { Profile } from "./models/profile";
+import { customElement, property } from "lit/decorators.js";
 
-@customElement("user-profile")
-export class UserProfileElement extends LitElement {
-  @property()
-  path: string = "";
 
-  @state()
-  profile?: Profile;
-
-  render() {
-    if (this.profile) {
-      return html`
-        <h1>${this.profile.name}</h1>
-        <p>${this.profile.userid}</p>
-        <p>${this.profile.nickname}</p>
-        <p>${this.profile.city}</p>
-      `;
-    }
-    // fill this in later
-    return html`...`;
+export interface Profile {
+    userid: string;
+    name: string;
+    nickname?: string;
+    city?: string;
   }
 
-  static styles = css`...`;
- 
-  _fetchData(path: string) {
-    fetch(serverPath(path))
-      .then((response) => {
-        if (response.status === 200) {
-          return response.json();
-        }
-        return null;
-      })
-      .then((json: unknown) => {
-          if (json) this.profile = json as Profile;
+
+@customElement("user-profile")
+class ProfileUser extends LitElement {
+  @property({ type: String })
+  userId = "rogp"
+  @property({ type: Object })
+  profile: Profile;
+
+  connectedCallback() {
+    super.connectedCallback();
+    fetch(`http://localhost:3000/api/profile/${this.userId}`)
+      .then((res) => res.json())
+      .then((profile: Profile) => {
+        this.profile = profile;
       });
   }
 
-  connectedCallback() {
-    if (this.path) {
-      this._fetchData(this.path);
-    }
-    super.connectedCallback();
-  }
-
-  attributeChangedCallback(
-    name: string,
-    oldValue: string,
-    newValue: string
-) {
-  if (name === "path" && oldValue !== newValue && oldValue) {
-    this._fetchData(newValue);
-  }
-  super.attributeChangedCallback(name, oldValue, newValue);
-}
-
-}
-
-@customElement("user-profile-edit")
-export class UserProfileEditElement extends UserProfileElement {
+  static styles = css``
   render() {
-    return html`<form @submit=${this._handleSubmit}>
-        <!-- fill in form here -->
-        <button type="submit">Submit</button>
-    </form> `;
-  }
-
-  static styles = [...UserProfileElement.styles, css`...`];
-
-  _handleSubmit(ev: Event) { ... }
-
-  _putData(json: Profile) { ... }
-
-  _handleSubmit(ev: Event) {
-    ev.preventDefault(); // prevent browser from submitting form data itself
-
-    const target = ev.target as HTMLFormElement;
-    const formdata = new FormData(target);
-    const entries = Array.from(formdata.entries())
-      .map(([k, v]) => (v === "" ? [k] : [k, v]))
-      .map(([k, v]) =>
-        k === "airports"
-          ? [k, (v as string).split(",").map((s) => s.trim())]
-          : [k, v]
-      );
-    const json = Object.fromEntries(entries);
-
-    this._putData(json);
-  }
-
-  _putData(json: Profile) {
-    fetch(serverPath(this.path), {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(json)
-    })
-      .then((response) => {
-        if (response.status === 200) return response.json();
-        else return null;
-      })
-      .then((json: unknown) => {
-        if (json) this.profile = json as Profile;
-      })
-      .catch((err) =>
-        console.log("Failed to PUT form data", err)
-      );
+    return html`
+      <h1>${this.profile.name}</h1>
+      <p>${this.profile.userid}</p>
+      <p>${this.profile.nickname}</p>
+      <p>${this.profile.city}</p>
+    `;
   }
 }
