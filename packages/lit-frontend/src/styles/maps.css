@@ -1,0 +1,70 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+/* Sidebar styles */
+.sidebar {
+    background-color: var(--sidebar-background-color, #f06d47);
+    padding: 20px;
+    width: 250px; /* Fixed width for the sidebar */
+    height: 100vh; /* Full height */
+    box-sizing: border-box; /* Include padding in width calculation */
+    float: left; /* Float the sidebar to the left */
+}
+
+/* Navbar and navbar items */
+.navbar {
+    display: block;
+}
+
+.navbar-item {
+    background-color: var(--item-background-color, white);
+    color: var(--text-color);
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: block; /* Block-level elements stack vertically */
+}
+
+/* Map container styles */
+.map-container {
+    margin-left: 270px; /* Add left margin equal to the sidebar width plus padding */
+    height: 100vh; /* Full viewport height */
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Iframe styles within the map container */
+iframe {
+    width: calc(100% - 270px); /* Subtract the sidebar width */
+    height: 100%;
+    border: none;
+}
+
+/* Clearfix for the floated sidebar */
+body::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    .sidebar, 
+    .map-container {
+        width: 100%; /* Full width for both on smaller screens */
+        height: auto; /* Adjust height automatically */
+        float: none; /* Disable float for mobile view */
+        margin-left: 0; /* Reset margins */
+    }
+
+    iframe {
+        width: 100%; /* Full width for iframe on smaller screens */
+    }
+}

@@ -1,0 +1,15 @@
+:root {
+    --page-background-color: #8dc3d6; /* Light grey for the page background */
+    --header-background-color: #f06d47; /* Bright orange for the header background */
+    --text-color: #333333; /* Dark grey for default text */
+    --header-text-color: #333333; /* Dark grey for text in the header, adjusted for contrast */
+    --accent-color: #8dc3d6; /* Sky blue as an accent color */
+}
+
+.dark {
+    --page-background-color: #333333; /* Dark grey for the page background */
+    --header-background-color: #f06d47; /* Bright orange for the header background */
+    --text-color: #f0f0f0; /* Light grey for default text */
+    --header-text-color: #f0f0f0; /* Light grey for text in the header, adjusted for contrast */
+    --accent-color: #8dc3d6; /* Sky blue as an accent color */
+}
