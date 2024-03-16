@@ -21,9 +21,30 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
   mod
 ));
+var __async = (__this, __arguments, generator) => {
+  return new Promise((resolve, reject) => {
+    var fulfilled = (value) => {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    };
+    var rejected = (value) => {
+      try {
+        step(generator.throw(value));
+      } catch (e) {
+        reject(e);
+      }
+    };
+    var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
+    step((generator = generator.apply(__this, __arguments)).next());
+  });
+};
 var import_express = __toESM(require("express"));
 var import_mongoConnect = require("./mongoConnect");
 var import_profiles = __toESM(require("./profiles"));
+var import_flights = __toESM(require("./flights"));
 var import_cors = __toESM(require("cors"));
 const app = (0, import_express.default)();
 const port = process.env.PORT || 3e3;
@@ -33,6 +54,7 @@ app.use(import_express.default.json());
 app.get(
   "/hello",
   (req, res) => {
+    import_flights.default.create({ flightNumber: "123" });
     res.send("Hello, World");
   }
 );
@@ -44,6 +66,14 @@ app.post("/api/profiles", (req, res) => {
   const newProfile = req.body;
   import_profiles.default.create(newProfile).then((profile) => res.status(201).send(profile)).catch((err) => res.status(500).send(err));
 });
+app.get("/api/flight/:flightNumber", (req, res) => {
+  const { flightNumber } = req.params;
+  import_flights.default.get(flightNumber).then((flight) => res.json(flight)).catch((err) => res.status(404).end());
+});
+app.get("/api/flights", (req, res) => __async(exports, null, function* () {
+  res.send(yield import_flights.default.index());
+  import_flights.default.index().then((flights2) => res.json(flights2)).catch((err) => res.status(404).end());
+}));
 app.put("/api/profiles/:userid", (req, res) => {
   const { userid } = req.params;
   const newProfile = req.body;

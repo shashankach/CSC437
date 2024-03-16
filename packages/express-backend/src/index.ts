@@ -1,7 +1,8 @@
 import express, { Request, Response } from "express";
 import { connect } from "./mongoConnect";
 import profiles from "./profiles";
-import { Profile } from "./models/profile";
+import flights from "./flights";
+import { Profile,Flight } from "ts-models";
 
 import cors from "cors";
 
@@ -13,6 +14,7 @@ app.use(express.json());
 connect("cluster0")
 
 app.get("/hello", (req: Request, res: Response) => {
+    flights.create({flightNumber: "123"})
     res.send("Hello, World");}
 );
 
@@ -32,6 +34,23 @@ app.post("/api/profiles", (req: Request, res: Response) => {
       .create(newProfile)
       .then((profile: Profile) => res.status(201).send(profile))
       .catch((err) => res.status(500).send(err));
+  });
+
+  app.get("/api/flight/:flightNumber", (req: Request, res: Response) => {
+    const { flightNumber } = req.params;
+  
+    flights
+      .get(flightNumber)
+      .then((flight: Flight) => res.json(flight))
+      .catch((err) => res.status(404).end());
+  });
+
+  app.get("/api/flights", async (req: Request, res: Response) => {
+    res.send(await flights.index())
+    flights
+      .index()
+      .then((flights: Flight[]) => res.json(flights))
+      .catch((err) => res.status(404).end());
   });
 
   app.put("/api/profiles/:userid", (req: Request, res: Response) => {

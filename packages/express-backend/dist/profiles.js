@@ -31,7 +31,7 @@ __export(profiles_exports, {
   default: () => profiles_default
 });
 module.exports = __toCommonJS(profiles_exports);
-var import_profile = __toESM(require("./models/mongo/profile"));
+var import_profile = __toESM(require("./mongo/profile"));
 function index() {
   return import_profile.default.find();
 }
