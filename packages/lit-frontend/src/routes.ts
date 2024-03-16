@@ -3,6 +3,8 @@ import "./views/flights";
 import "./views/things";
 import "./views/maps";
 import "./views/itinerary";
+import "./views/login";
+import "./views/profile";
 
 export default [
   

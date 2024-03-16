@@ -4,9 +4,33 @@ import { Profile, Flight } from "ts-models";
 
 const dispatch = App.createDispatch();
 export default dispatch.update;
+
+dispatch.addMessage("LoginSubmitted", (msg: App.Message) => {
+  const { userid, password } = msg as App.LoginSubmitted;
+  return new JSONRequest({
+    userid: userid,
+    password: password
+  }).post("login")
+  .then((response: Response) => {
+    if (response.status === 200) {
+      return response.json();
+    }
+    return undefined;
+  })
+  .then((json: unknown) => {
+    if (json) {
+      console.log("Login:", json);
+      return json as Profile;
+    }
+  })
+  .then((profile: Profile | undefined) =>
+    profile ? App.updateProps({ profile }) : App.noUpdate
+  );
+});
+
 dispatch.addMessage("FlightListLoaded", (_: App.Message) => {
   
-
+  
   return new APIRequest()
     .get("/flights/")
     .then((response: Response) => {

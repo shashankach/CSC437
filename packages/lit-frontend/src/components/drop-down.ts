@@ -21,7 +21,7 @@ export class DropDownElement extends LitElement {
       <ul>
         <li><a href="/profile/">Profile</a></li>
         <li><a href="settings.html">Settings</a></li>
-        <li><a href="logout.html">Logout</a></li>
+        <li><a href="/login/">Logout</a></li>
         <li>
           <label class="switch">
             <input type="checkbox" @change="${this.toggleDarkMode}">

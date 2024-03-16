@@ -2,7 +2,8 @@ import express, { Request, Response } from "express";
 import { connect } from "./mongoConnect";
 import profiles from "./profiles";
 import flights from "./flights";
-import { Profile,Flight } from "ts-models";
+import logins from "./logins";
+import { Profile,Flight,Login } from "ts-models";
 
 import cors from "cors";
 
@@ -62,6 +63,17 @@ app.post("/api/profiles", (req: Request, res: Response) => {
       .then((profile: Profile) => res.json(profile))
       .catch((err) => res.status(404).end());
   });
+
+  app.post("/api/logins", (req: Request, res: Response) => {
+    const newLogin = req.body;
+  
+    logins
+      .create(newLogin)
+      .then((login: Login) => res.status(201).send(login))
+      .catch((err) => res.status(500).send(err));
+  });
+
+
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);

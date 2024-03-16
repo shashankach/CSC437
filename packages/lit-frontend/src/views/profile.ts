@@ -58,8 +58,9 @@ class ProfilePage extends App.View{
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 20px;
+    justify: center;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    vertical-align: top; /* Aligns with the top of the sidebar if they are side by side */
+    vertical-align: center; /* Aligns with the top of the sidebar if they are side by side */
 }
 
 .user-panel img {
@@ -93,7 +94,20 @@ class ProfilePage extends App.View{
 
   render() {
     return html`
+    <div class="user-panel">
     <user-profile></user-profile>
+    </div>
+    
+
+    <div class="sidebar">
+            <div class="navbar">
+                <a href="/" class="navbar-item">Home</a>
+                <a href="/flights/" class="navbar-item">Flights</a>
+                <a href="/itinerary/" class="navbar-item">Itinerary</a>
+                <a href="/things/" class="navbar-item">Things to Do</a>
+                <a href="/maps/" class="navbar-item">Map</a>
+            </div>
+        </div>
     `;
   }
 }

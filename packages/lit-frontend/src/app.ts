@@ -30,10 +30,16 @@ export interface ProfileSaved extends MsgType<"ProfileSaved"> {
   profile: Profile;
 }
 
+export interface LoginSubmitted extends MsgType<"LoginSubmitted"> {
+  userid: string;
+  password: string;
+}
+
 
 export type Message =
   | ProfileSelected
   | ProfileSaved
+  | LoginSubmitted
   | FlightListLoaded;
 
 export class Main

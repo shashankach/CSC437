@@ -2,12 +2,16 @@ import { html, css } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import * as App from "../app";
 
-import '../components/drop-down';
 
 @customElement("login-view")
 class LoginPage extends App.View {
 
+  
+
   @state() private showSignup: boolean = false;
+  @state() private username: string = '';
+  @state() private password: string = '';
+
 
   static styles = css`
     /* Add your existing styles here */
@@ -40,16 +44,41 @@ class LoginPage extends App.View {
     this.showSignup = !this.showSignup;
   }
 
+
+
+  private handleUsernameChange(e: Event) {
+    const target = e.target as HTMLInputElement;
+    this.username = target.value;
+  }
+  
+  private handlePasswordChange(e: Event) {
+    const target = e.target as HTMLInputElement;
+    this.password = target.value;
+  }
+  
+  private performLogin() {
+    console.log("Logging in with username:", this.username, "and password:", this.password);
+
+    // Here you would dispatch your login message or perform further login logic
+  }
+  
   private renderLogin() {
     return html`
       <div class="login-container">
-        <input type="email" placeholder="Email">
-        <input type="password" placeholder="Password">
-        <button>Login</button>
+        <input id="username" type="text" placeholder="Username" @input=${this.handleUsernameChange}>
+        <input id="password" type="password" placeholder="Password" @input=${this.handlePasswordChange}>
+        <button @click=${this.performLogin}>Login</button>
         <div class="toggle-button" @click="${this.toggleForm}">Don't have an account? Sign up</div>
       </div>
     `;
   }
+  constructor() {
+    super();
+    this.handleUsernameChange = this.handleUsernameChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.performLogin = this.performLogin.bind(this);
+  }
+  
 
   private renderSignup() {
     return html`
