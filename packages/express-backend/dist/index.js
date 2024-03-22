@@ -80,8 +80,9 @@ app.put("/api/profiles/:userid", (req, res) => {
   const newProfile = req.body;
   import_profiles.default.update(userid, newProfile).then((profile) => res.json(profile)).catch((err) => res.status(404).end());
 });
-app.post("/api/logins", (req, res) => {
+app.post("/api/login/", (req, res) => {
   const newLogin = req.body;
+  console.log(newLogin);
   import_logins.default.create(newLogin).then((login) => res.status(201).send(login)).catch((err) => res.status(500).send(err));
 });
 app.listen(port, () => {

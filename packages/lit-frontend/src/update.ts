@@ -7,10 +7,11 @@ export default dispatch.update;
 
 dispatch.addMessage("LoginSubmitted", (msg: App.Message) => {
   const { userid, password } = msg as App.LoginSubmitted;
+  alert("LoginSubmitted");
   return new JSONRequest({
     userid: userid,
     password: password
-  }).post("login")
+  }).post("/login/")
   .then((response: Response) => {
     if (response.status === 200) {
       return response.json();
@@ -24,7 +25,9 @@ dispatch.addMessage("LoginSubmitted", (msg: App.Message) => {
     }
   })
   .then((profile: Profile | undefined) =>
-    profile ? App.updateProps({ profile }) : App.noUpdate
+    { 
+    localStorage.setItem("userid", userid);
+    return profile ? App.updateProps({ profile }) : App.noUpdate}
   );
 });
 

@@ -64,9 +64,9 @@ app.post("/api/profiles", (req: Request, res: Response) => {
       .catch((err) => res.status(404).end());
   });
 
-  app.post("/api/logins", (req: Request, res: Response) => {
+  app.post("/api/login/", (req: Request, res: Response) => {
     const newLogin = req.body;
-  
+    console.log(newLogin)
     logins
       .create(newLogin)
       .then((login: Login) => res.status(201).send(login))

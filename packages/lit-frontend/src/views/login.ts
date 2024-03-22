@@ -1,6 +1,7 @@
 import { html, css } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import * as App from "../app";
+import { Router } from "@vaadin/router";
 
 
 @customElement("login-view")
@@ -49,7 +50,9 @@ class LoginPage extends App.View {
   private handleUsernameChange(e: Event) {
     const target = e.target as HTMLInputElement;
     this.username = target.value;
+    
   }
+  
   
   private handlePasswordChange(e: Event) {
     const target = e.target as HTMLInputElement;
@@ -58,6 +61,8 @@ class LoginPage extends App.View {
   
   private performLogin() {
     console.log("Logging in with username:", this.username, "and password:", this.password);
+    this.dispatchMessage({type: "LoginSubmitted", userid: this.username, password: this.password});
+    Router.go("/home");
 
     // Here you would dispatch your login message or perform further login logic
   }
